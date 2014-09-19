@@ -1,6 +1,6 @@
 require 'rails/generators'
 
-module Mjl
+module MyJavascriptLibrary
 	module Generators
 		class InstallGenerator < ::Rails::Generators::Base
 			def add_assets
