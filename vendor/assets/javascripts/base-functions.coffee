@@ -32,3 +32,17 @@ window.getRootElementFontSize = ->
 
 window.convertRem = (value) ->
 	value * getRootElementFontSize();
+
+window.fetch_instagram = (user_id, client_id) ->
+	$.ajax
+		url: "https://api.instagram.com/v1/users/" + user_id + "/media/recent/?client_id=" + client_id
+		dataType: "jsonp"
+		jsonpCallback: 'insert_instagram'
+
+window.insert_instagram = (instagram) ->
+	for k, v of instagram.data
+		if k <= 15
+			$container = $('<li>')
+			$image = $('<img>').attr({src: v.images.standard_resolution.url})
+			$image.appendTo($container)
+			$container.appendTo('#instagram-feed')
